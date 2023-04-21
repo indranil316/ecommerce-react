@@ -33,7 +33,7 @@ export default function Header() {
 
   return (
     <>
-      <nav className="mx-auto flex max-w-7xl items-center justify-center p-6 lg:px-8" aria-label="Global">
+      <nav className="mx-auto flex max-w-7xl items-center justify-center" aria-label="Global">
         <div className="flex lg:hidden">
           <button
             type="button"
