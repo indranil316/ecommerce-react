@@ -1,0 +1,54 @@
+{
+    "catagories" : [
+        {
+            "catagoryID" : 12344,
+            "catagoryName" : "Men",
+            "catagoryDescription" : "Men clothing and accessories",
+            "subCatagories" : [
+                {
+                    "subCatagoryId" : 273468273,
+                    "subCatagoryName" : "Shirts",
+                    "subCatagoryDescription" : "Men Shirts",
+                    "subcatagoryImageLink" : "http://www.imagelink.com/293820839402938420398"
+                },
+                {
+                    "subCatagoryId" : 273468273,
+                    "subCatagoryName" : "Pants",
+                    "subCatagoryDescription" : "Men Pants",
+                    "subcatagoryImageLink" : "http://www.imagelink.com/293820839402938420398"
+                },
+                {
+                    "subCatagoryId" : 273468293,
+                    "subCatagoryName" : "jackets",
+                    "subCatagoryDescription" : "Men jackets",
+                    "subcatagoryImageLink" : "http://www.imagelink.com/293820839402938420398"
+                }
+            ]
+        },
+        {
+            "catagoryID" : 12344,
+            "catagoryName" : "Women",
+            "catagoryDescription" : "Men clothing and accessories",
+            "subCatagories" : [
+                {
+                    "subCatagoryId" : 273468273,
+                    "subCatagoryName" : "Lehenga",
+                    "subCatagoryDescription" : "Lehenga",
+                    "subcatagoryImageLink" : "http://www.imagelink.com/2983429348239048322"
+                },
+                {
+                    "subCatagoryId" : 273468273,
+                    "subCatagoryName" : "Pants",
+                    "subCatagoryDescription" : "women Pants",
+                    "subcatagoryImageLink" : "http://www.imagelink.com/293840239710920192"
+                },
+                {
+                    "subCatagoryId" : 273468273,
+                    "subCatagoryName" : "saree",
+                    "subCatagoryDescription" : "women saree",
+                    "subcatagoryImageLink" : "http://www.imagelink.com/sdkkjfh2983u293847208"
+                }
+            ]
+        }
+    ]
+}
