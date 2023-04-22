@@ -1,0 +1,184 @@
+{
+    "categories" : [
+        {
+            "categoryId": 1111,
+            "categoryName": "Women's Clothing",
+            "categoryDescription": "Clothing and accessories for women",
+            "categoryNavLink": "/women",
+            "subCategories": [
+                {
+                    "subCategoryId": 11111,
+                    "subCategoryName": "Dresses",
+                    "subCategoryDescription": "Stylish dresses for women",
+                    "subCategoryNavLink": "/women/dresses",
+                    "subCategoryImageLink": "http://www.imagelink.com/women-dresses"
+                },
+                {
+                    "subCategoryId": 11112,
+                    "subCategoryName": "Tops",
+                    "subCategoryDescription": "Trendy tops for women",
+                    "subCategoryNavLink": "/women/tops",
+                    "subCategoryImageLink": "http://www.imagelink.com/women-tops"
+                },
+                {
+                    "subCategoryId": 11113,
+                    "subCategoryName": "Jeans",
+                    "subCategoryDescription": "Comfortable jeans for women",
+                    "subCategoryNavLink": "/women/jeans",
+                    "subCategoryImageLink": "http://www.imagelink.com/women-jeans"
+                },
+                {
+                    "subCategoryId": 11114,
+                    "subCategoryName": "Accessories",
+                    "subCategoryDescription": "Stylish accessories for women",
+                    "subCategoryNavLink": "/women/accessories",
+                    "subCategoryImageLink": "http://www.imagelink.com/women-accessories"
+                }
+            ]
+        },
+        {
+            "categoryId": 2222,
+            "categoryName": "Men's Clothing",
+            "categoryDescription": "Clothing and accessories for men",
+            "categoryNavLink": "/men",
+            "subCategories": [
+                {
+                    "subCategoryId": 22221,
+                    "subCategoryName": "Shirts",
+                    "subCategoryDescription": "Stylish shirts for men",
+                    "subCategoryNavLink": "/men/shirts",
+                    "subCategoryImageLink": "http://www.imagelink.com/men-shirts"
+                },
+                {
+                    "subCategoryId": 22222,
+                    "subCategoryName": "Trousers",
+                    "subCategoryDescription": "Comfortable trousers for men",
+                    "subCategoryNavLink": "/men/trousers",
+                    "subCategoryImageLink": "http://www.imagelink.com/men-trousers"
+                },
+                {
+                    "subCategoryId": 22223,
+                    "subCategoryName": "Suits",
+                    "subCategoryDescription": "Elegant suits for men",
+                    "subCategoryNavLink": "/men/suits",
+                    "subCategoryImageLink": "http://www.imagelink.com/men-suits"
+                },
+                {
+                    "subCategoryId": 22224,
+                    "subCategoryName": "Accessories",
+                    "subCategoryDescription": "Stylish accessories for men",
+                    "subCategoryNavLink": "/men/accessories",
+                    "subCategoryImageLink": "http://www.imagelink.com/men-accessories"
+                }
+            ]
+        },
+        {
+            "categoryId": 4444,
+            "categoryName": "Sportswear",
+            "categoryDescription": "Clothing and accessories for sports enthusiasts",
+            "categoryNavLink": "/sportswear",
+            "subCategories": [
+                {
+                    "subCategoryId": 44441,
+                    "subCategoryName": "Athletic Shoes",
+                    "subCategoryDescription": "Comfortable shoes for sports activities",
+                    "subCategoryNavLink": "/sportswear/athletic-shoes",
+                    "subCategoryImageLink": "http://www.imagelink.com/sportswear-athletic-shoes"
+                },
+                {
+                    "subCategoryId": 44442,
+                    "subCategoryName": "Sportswear Clothing",
+                    "subCategoryDescription": "Clothing designed for sports activities",
+                    "subCategoryNavLink": "/sportswear/clothing",
+                    "subCategoryImageLink": "http://www.imagelink.com/sportswear-clothing"
+                },
+                {
+                    "subCategoryId": 44443,
+                    "subCategoryName": "Sports Accessories",
+                    "subCategoryDescription": "Accessories designed for sports activities",
+                    "subCategoryNavLink": "/sportswear/accessories",
+                    "subCategoryImageLink": "http://www.imagelink.com/sportswear-accessories"
+                },
+                {
+                    "subCategoryId": 44444,
+                    "subCategoryName": "Fitness Equipment",
+                    "subCategoryDescription": "Equipment used for fitness exercises",
+                    "subCategoryNavLink": "/sportswear/fitness-equipment",
+                    "subCategoryImageLink": "http://www.imagelink.com/sportswear-fitness-equipment"
+                }
+            ]
+        },
+        {
+            "categoryId": 5555,
+            "categoryName": "Ethnic Wear",
+            "categoryDescription": "Traditional clothing and accessories",
+            "categoryNavLink": "/ethnic-wear",
+            "subCategories": [
+                {
+                    "subCategoryId": 55551,
+                    "subCategoryName": "Sarees",
+                    "subCategoryDescription": "Traditional Indian attire for women",
+                    "subCategoryNavLink": "/ethnic-wear/sarees",
+                    "subCategoryImageLink": "http://www.imagelink.com/ethnic-wear-sarees"
+                },
+                {
+                    "subCategoryId": 55552,
+                    "subCategoryName": "Kurtas",
+                    "subCategoryDescription": "Traditional Indian attire for men",
+                    "subCategoryNavLink": "/ethnic-wear/kurtas",
+                    "subCategoryImageLink": "http://www.imagelink.com/ethnic-wear-kurtas"
+                },
+                {
+                    "subCategoryId": 55553,
+                    "subCategoryName": "Lehengas",
+                    "subCategoryDescription": "Traditional Indian attire for women",
+                    "subCategoryNavLink": "/ethnic-wear/lehengas",
+                    "subCategoryImageLink": "http://www.imagelink.com/ethnic-wear-lehengas"
+                },
+                {
+                    "subCategoryId": 55554,
+                    "subCategoryName": "Sherwanis",
+                    "subCategoryDescription": "Traditional Indian attire for men",
+                    "subCategoryNavLink": "/ethnic-wear/sherwanis",
+                    "subCategoryImageLink": "http://www.imagelink.com/ethnic-wear-sherwanis"
+                }
+            ]
+        },
+        {
+            "categoryId": 6666,
+            "categoryName": "Kids",
+            "categoryDescription": "Clothing and accessories for kids",
+            "categoryNavLink": "/kids",
+            "subCategories": [
+                {
+                    "subCategoryId": 66661,
+                    "subCategoryName": "Boys' Clothing",
+                    "subCategoryDescription": "Clothing for boys",
+                    "subCategoryNavLink": "/kids/boys-clothing",
+                    "subCategoryImageLink": "http://www.imagelink.com/kids-boys-clothing"
+                },
+                {
+                    "subCategoryId": 66662,
+                    "subCategoryName": "Girls' Clothing",
+                    "subCategoryDescription": "Clothing for girls",
+                    "subCategoryNavLink": "/kids/girls-clothing",
+                    "subCategoryImageLink": "http://www.imagelink.com/kids-girls-clothing"
+                },
+                {
+                    "subCategoryId": 66663,
+                    "subCategoryName": "Kids' Shoes",
+                    "subCategoryDescription": "Shoes for kids",
+                    "subCategoryNavLink": "/kids/kids-shoes",
+                    "subCategoryImageLink": "http://www.imagelink.com/kids-kids-shoes"
+                },
+                {
+                    "subCategoryId": 66664,
+                    "subCategoryName": "Accessories",
+                    "subCategoryDescription": "Accessories for kids",
+                    "subCategoryNavLink": "/kids/accessories",
+                    "subCategoryImageLink": "http://www.imagelink.com/kids-accessories"
+                }
+            ]
+        }        
+    ]
+}

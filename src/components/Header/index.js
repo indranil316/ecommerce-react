@@ -2,11 +2,11 @@ import React from 'react';
 import Nav from './Nav';
 import HeaderTop from './HeaderTop';
 
-function Header() {
+function Header(props) {
   return (
     <header className="bg-white">
         <HeaderTop/>
-        <Nav/>
+        <Nav categories={props.categories}/>
     </header>
   )
 }
