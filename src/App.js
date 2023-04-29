@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './scss/index.scss';
-import {BrowserRouter} from 'react-router-dom';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
-import { Categories } from './dummyApi'
+import { Categories } from './dummyApi';
+
+import Home from './pages/Home';
 
 import Header from './components/Header';
 import {AppLoading} from './components/Loaders';
@@ -31,6 +33,11 @@ function App() {
         !appLoading?(
           <div id="app">
             <Header categories={categories}/>
+            <main className='w-full'>
+              <Routes>
+                <Route path='/' element={<Home/>} />
+              </Routes>
+            </main>
           </div>
         ):<AppLoading/>
       }
