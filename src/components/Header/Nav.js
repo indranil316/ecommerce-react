@@ -1,28 +1,13 @@
 import { Fragment, useState } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import {
-  ArrowPathIcon,
-  Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
+  Bars3Icon
 } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import {Link} from 'react-router-dom';
 import MobileNav from './MobileNav';
 
-const products = [
-  { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
-  { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
-  { name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
-  { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
-  { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
-]
-const callsToAction = [
-  { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
-  { name: 'Contact sales', href: '#', icon: PhoneIcon },
-]
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -32,7 +17,6 @@ export default function Nav(props) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const createNavItem = (category) => {
-    console.log(category.subCategories)
     return (
       <Popover className="relative" key={category.categoryID}>
         <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
@@ -52,7 +36,6 @@ export default function Nav(props) {
           <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
             <div className="p-4">
               {category.subCategories.map((item) => {
-                console.log(item)
                 return (
                   <div
                     key={item.subCategoryId}
@@ -62,9 +45,13 @@ export default function Nav(props) {
                       <item.icon className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
                     </div> */}
                     <div className="flex-auto">
-                      <Link to={item.subCategoryNavLink} className="block font-semibold text-gray-900">
-                        {item.subCategoryName}
-                        <span className="absolute inset-0" />
+                      <Link 
+                        to={'shop'+item.subCategoryNavLink} 
+                        onClick={()=>{props.setSearchRule("categoryId="+item.subCategoryId)}} 
+                        className="block font-semibold text-gray-900"
+                      >
+                          {item.subCategoryName}
+                          <span className="absolute inset-0" />
                       </Link>
                       <p className="mt-1 text-gray-600">{item.subCategoryDescription}</p>
                     </div>
@@ -80,7 +67,7 @@ export default function Nav(props) {
   }
   return (
     <>
-      <nav className="mx-auto flex max-w-7xl items-center justify-center" aria-label="Global">
+      <nav className="mx-auto flex max-w-7xl items-center justify-center py-6" aria-label="Global">
         <div className="flex lg:hidden">
           <button
             type="button"

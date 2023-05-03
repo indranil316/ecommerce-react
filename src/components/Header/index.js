@@ -1,13 +1,18 @@
 import React from 'react';
 import Nav from './Nav';
 import HeaderTop from './HeaderTop';
+import PromoBanner from './PromoBanner';
 
 function Header(props) {
   return (
-    <header className="bg-white">
+    <>
+      <PromoBanner/>
+      <header className="bg-white  max-w-screen-xl mx-auto">
         <HeaderTop/>
-        <Nav categories={props.categories}/>
-    </header>
+        <Nav categories={props.categories} setSearchRule={props.setSearchRule}/>
+      </header>
+    </>
+
   )
 }
 

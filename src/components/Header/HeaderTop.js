@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 function HeaderTop() {
   return (
-    <div className='w-full flex items-center justify-between p-6 lg:px-8'>
+    <div className='w-full flex items-center justify-between pt-6 lg:px-8'>
       <div className='w-[30%]'>
         <Link to="/stores" className='flex cursor-pointer'>
           <FontAwesomeIcon icon={faLocationDot} size='lg'/>
