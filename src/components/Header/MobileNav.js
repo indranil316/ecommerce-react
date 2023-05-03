@@ -33,7 +33,7 @@ function MobileNav(props) {
                 {
                   categories.map(category=>{
                     return(
-                      <Disclosure as="div" className="-mx-3">
+                      <Disclosure as="div" className="-mx-3" key={category.categoryId}>
                       {({ open }) => (
                         <>
                           <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50">

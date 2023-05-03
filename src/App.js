@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import './scss/index.scss';
+import React, { useState } from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { useQuery } from 'react-query';
+
+import './scss/index.scss';
 
 import { Categories } from './dummyApi';
 
@@ -10,40 +12,30 @@ import Search from './pages/Search';
 import Header from './components/Header';
 import {AppLoading} from './components/Loaders';
 
+import {queries} from './constants';
+
+
 function App() {
-  const [categories,setCategories] = useState([]);
-  const [appLoading, setAppLoading] = useState(false);
   const [searchRule, setSearchRule] = useState('categoryId=11111')
 
-  useEffect(function(){
-    setAppLoading(true);
-    Categories.getCategories()
-    .then(res=>{
-      setCategories(res.categories);
-      setAppLoading(false);
-    })
-    .catch(err=>{
-      console.error(err)
-      setAppLoading(false);
-    })
-  },[]);
+  const { isLoading, error, data} = useQuery(queries.fetchCategories,()=>{
+    return Categories.getCategories()
+  })
 
-  
+  if(isLoading) return <AppLoading/>;
+  if(error) return <div>error</div>;
+
   return (
     <BrowserRouter>
-      {
-        !appLoading?(
-          <div id="app">
-            <Header categories={categories} setSearchRule={setSearchRule}/>
-            <main className='w-full'>
-              <Routes>
-                <Route exact path='/' element={<Home/>} />
-                <Route path='/shop/:category/:subcategory?' element={<Search searchRule={searchRule}/>}/>
-              </Routes>
-            </main>
-          </div>
-        ):<AppLoading/>
-      }
+      <div id="app">
+        <Header categories={data.categories} setSearchRule={setSearchRule}/>
+        <main className='w-full'>
+          <Routes>
+            <Route exact path='/' element={<Home/>} />
+            <Route path='/shop/:category/:subcategory?' element={<Search searchRule={searchRule}/>}/>
+          </Routes>
+        </main>
+      </div>
     </BrowserRouter>
   )
 }

@@ -18,7 +18,7 @@ export default function Nav(props) {
 
   const createNavItem = (category) => {
     return (
-      <Popover className="relative" key={category.categoryID}>
+      <Popover className="relative" key={category.categoryId}>
         <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
           {category.categoryName}
           <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
