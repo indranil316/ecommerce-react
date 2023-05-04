@@ -14,12 +14,12 @@ import {AppLoading} from './components/Loaders';
 
 function App() {
   const [searchRule, setSearchRule] = useState('categoryId=11111')
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
   const state = useSelector((state)=>state);
   console.log(state);
 
   useEffect(function(){
-    dispath(fetchCategories());
+    dispatch(fetchCategories());
   },[])
 
   const { isLoading, error, data} = state.categories;
