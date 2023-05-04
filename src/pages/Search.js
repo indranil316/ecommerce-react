@@ -20,11 +20,13 @@ function Search(props) {
   },[params])
 
   useEffect(function(){
+    console.log(searchedCategoryId)
     dispatch(fetchProductsByCategory(searchedCategoryId));
   },[searchedCategoryId])
 
   const renderListItems = () => {
-    if(state.isLoading === true || !state.error){
+    console.log(state);
+    if(state.isLoading === true || state.data===null){
       return null;
     }
     return state.data.map(item=>{

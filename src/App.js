@@ -16,7 +16,6 @@ function App() {
   const [searchRule, setSearchRule] = useState('categoryId=11111')
   const dispatch = useDispatch();
   const state = useSelector((state)=>state);
-  console.log(state);
 
   useEffect(function(){
     dispatch(fetchCategories());
