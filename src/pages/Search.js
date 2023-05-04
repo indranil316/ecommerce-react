@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useParams} from 'react-router-dom';
-import {Categories} from '../dummyApi';
+import { useDispatch, useSelector } from 'react-redux';
+import {fetchProductsByCategory} from '../store/slice/products';
 
 import { Breadcrumbs, SearchProductCard, CategoryBanner, Filter } from '../components/Search';
 
 function Search(props) {
+  const dispatch = useDispatch();
+  const state = useSelector((state)=>state.products);
   const params = new URLSearchParams(props.searchRule);
   const [searchedCategoryId, setSearchedCategoryId] = useState('');
-  const [listItems, setListItems] = useState([]);
   const { category, subcategory } = useParams();
+
 
   useEffect(function(){
     if(params.get('categoryId')){
@@ -17,21 +20,14 @@ function Search(props) {
   },[params])
 
   useEffect(function(){
-    Categories.getProductsByCategory(searchedCategoryId)
-    .then(res=>{
-      setListItems(res)
-    })
-    .catch(err=>{
-      setListItems([]);
-      console.log(err)
-    })
+    dispatch(fetchProductsByCategory(searchedCategoryId));
   },[searchedCategoryId])
 
   const renderListItems = () => {
-    if(listItems.length===0){
+    if(state.isLoading === true || !state.error){
       return null;
     }
-    return listItems.map(item=>{
+    return state.data.map(item=>{
       return <SearchProductCard product={item} key={item.productId}/>
     })
   }
