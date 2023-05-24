@@ -17,10 +17,12 @@ function Search(props) {
     if(params.get('categoryId')){
       setSearchedCategoryId(params.get('categoryId'))
     }
+    else if(params.get('searchKey')){
+      console.log('hehe')
+    }
   },[params])
 
   useEffect(function(){
-    console.log(searchedCategoryId)
     dispatch(fetchProductsByCategory(searchedCategoryId));
   },[searchedCategoryId])
 

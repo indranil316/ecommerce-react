@@ -7,9 +7,12 @@ import './scss/index.scss';
 
 import Home from './pages/Home';
 import Search from './pages/Search';
+import Product from './pages/Product';
+import Cart from './pages/Cart';
 
 import Header from './components/Header';
 import {AppLoading} from './components/Loaders';
+
 
 
 function App() {
@@ -34,6 +37,9 @@ function App() {
           <Routes>
             <Route exact path='/' element={<Home/>} />
             <Route path='/shop/:category/:subcategory?' element={<Search searchRule={searchRule}/>}/>
+            <Route path='/shop' element={<Search searchRule={searchRule}/>}/>
+            <Route path='/product/:productId' element={<Product/>}/>
+            <Route path='/cart' element={<Cart/>}/>
           </Routes>
         </main>
       </div>

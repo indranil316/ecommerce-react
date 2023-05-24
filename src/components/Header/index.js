@@ -8,7 +8,7 @@ function Header(props) {
     <>
       <PromoBanner/>
       <header className="bg-white  max-w-screen-xl mx-auto">
-        <HeaderTop/>
+        <HeaderTop categories={props.categories} setSearchRule={props.setSearchRule}/>
         <Nav categories={props.categories} setSearchRule={props.setSearchRule}/>
       </header>
     </>

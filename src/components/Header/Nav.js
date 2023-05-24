@@ -1,20 +1,10 @@
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
-import {
-  Bars3Icon
-} from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import {Link} from 'react-router-dom';
-import MobileNav from './MobileNav';
 
-
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
 export default function Nav(props) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const createNavItem = (category) => {
     return (
@@ -67,17 +57,7 @@ export default function Nav(props) {
   }
   return (
     <>
-      <nav className="mx-auto flex max-w-7xl items-center justify-center py-6" aria-label="Global">
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <span className="sr-only">Open main menu</span>
-            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-          </button>
-        </div>
+      <nav className="mx-auto hidden lg:flex max-w-7xl items-center justify-center py-6" aria-label="Global">
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           {props.categories.map(category=>{
             return createNavItem(category);
@@ -87,12 +67,6 @@ export default function Nav(props) {
           </Link> */}
         </Popover.Group>
       </nav>
-      <MobileNav
-        mobileMenuOpen={mobileMenuOpen}
-        setMobileMenuOpen={setMobileMenuOpen}
-        classNames={classNames}
-        categories={props.categories}
-      />
     </>
   )
 }

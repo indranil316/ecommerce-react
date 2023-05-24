@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 function Breadcrumbs(props) {
   const [category, subCategory] = props.links;
   return (
-    <nav className="w-full rounded-md mt-5">
+    <nav className={`w-full rounded-md mt-5 ${props.className?props.className:''}`}>
         <ol className="list-reset flex">
             <li>
                 <Link
