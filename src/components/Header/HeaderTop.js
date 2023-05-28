@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faHeart, faUser, faCartShopping} from '@fortawesome/free-solid-svg-icons'
 import { Bars3Icon } from '@heroicons/react/24/outline'
@@ -60,13 +60,13 @@ function HeaderTop(props) {
                   />
               </div>
           </form>
-          <Link to="/wishlist" className='mx-[8px]'>
+          <Link to="/wishlist" className='mx-[8px] hidden md:block'>
             <FontAwesomeIcon icon={faHeart} size="lg"/>
           </Link>
           <Link to="/login" className='mx-[8px]'>
-            <FontAwesomeIcon icon={faUser} size="lg"/>
+            <FontAwesomeIcon icon={faUser} size="lg hidden md:block" />
           </Link>
-          <Link to="/cart" className='mx-[8px]'>
+          <Link to="/cart" id='my-cart' className='mx-[8px]'>
             <FontAwesomeIcon icon={faCartShopping} size="lg"/>
           </Link>
         </div>

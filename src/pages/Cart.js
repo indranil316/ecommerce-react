@@ -1,13 +1,43 @@
-import React from 'react';
-import 'tailwindcss/tailwind.css';
+import React, {useState, useEffect} from 'react';
+import { cartId } from '../constants';
+import { MdDelete } from 'react-icons/md';
 
 const CartPage = () => {
-  const cartItems = [
-    // Cart items array
-  ];
+  const [cartItems, setCartItems] = useState([]);
+  const [subTotal, setSubTotal] = useState(0);
+
+  useEffect(function(){
+    let items =JSON.parse(localStorage.getItem(cartId)) ?? [];
+    let itemsMap = {};
+    items.forEach(item=>{
+      if(Object.keys(itemsMap).includes(item.productId)){
+        itemsMap[item.productId].qty+=1;
+        itemsMap[item.productId].price+=itemsMap[item.productId].price;
+      }
+      else{
+        itemsMap[item.productId] = {...item,qty:1};
+      }
+    })
+    setCartItems(Object.values(itemsMap));
+  },[])
+
+  useEffect(function(){
+    if(cartItems.length!==0){
+      let subTotal = [...cartItems].reduce((t,c)=>{
+        t+=c.price;
+        return t;
+      },0);
+      setSubTotal(subTotal.toFixed(2))
+    }
+  },[cartItems])
+
+  useEffect(function(){
+    localStorage.setItem(cartId,JSON.stringify(cartItems));
+  },[cartItems]);
 
   const handleDeleteItem = (itemId) => {
     // Logic to remove item from cart
+    setCartItems([...cartItems].filter(item=>item.productId!==itemId))
   };
 
   const getTotalPrice = () => {
@@ -26,7 +56,7 @@ const CartPage = () => {
           {cartItems.length > 0 ? (
             <div>
               {cartItems.map((item) => (
-                <div key={item.id} className="flex items-center mb-4">
+                <div key={item.productId} className="flex items-center mb-4">
                   <div className="flex-shrink-0">
                     <img src={item.image} alt={item.name} className="w-24 h-32 object-cover" />
                   </div>
@@ -35,23 +65,13 @@ const CartPage = () => {
                     <p className="text-gray-500">${item.price.toFixed(2)}</p>
                     <p className="text-gray-500">Color: {item.color}</p>
                     <p className="text-gray-500">Promotion: {item.promotion}</p>
+                    <p className="text-gray-500">Quantity: {item.qty}</p>
                   </div>
                   <button
-                    onClick={() => handleDeleteItem(item.id)}
+                    onClick={() => handleDeleteItem(item.productId)}
                     className="ml-auto text-gray-500 hover:text-red-500"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 2a8 8 0 100 16 8 8 0 000-16zM4 10a6 6 0 1112 0 6 6 0 01-12 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
+                   <MdDelete size={20} />
                   </button>
                 </div>
               ))}
@@ -72,7 +92,18 @@ const CartPage = () => {
                 APPLY
               </button>
             </div>
-            {/* Rest of the summary details */}
+            <div className='flex justify-between items-center mb-2 mt-5'>
+              <p>Sub Total : </p>
+              <p>$ {subTotal}</p>
+            </div>
+            <div className='flex justify-between items-center mb-2 mt-5 border-b border-dotted border-black pb-5'>
+              <p>Ground Shipping : </p>
+              <p>FREE</p>
+            </div>
+            <div className='flex justify-between items-center mb-2 mt-5'>
+              <p>Total : </p>
+              <p>$ {subTotal}</p>
+            </div>
           </div>
           <button className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-900 w-full">
             Checkout

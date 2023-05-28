@@ -11,6 +11,7 @@ import Product from './pages/Product';
 import Cart from './pages/Cart';
 
 import Header from './components/Header';
+import Footer from './components/Footer';
 import {AppLoading} from './components/Loaders';
 
 
@@ -42,6 +43,7 @@ function App() {
             <Route path='/cart' element={<Cart/>}/>
           </Routes>
         </main>
+        <Footer/>
       </div>
     </BrowserRouter>
   )

@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
-export default function ProductDetails({ name, badge, ratings, price, colors, sizes }) {
+export default function ProductDetails({ productId, name, badge, ratings, price, colors, sizes, addToCart, image }) {
   return (
     <div className="w-2/5 ml-5">
       {/* Product name */}
@@ -49,7 +49,7 @@ export default function ProductDetails({ name, badge, ratings, price, colors, si
         </div>
       </div>
       {/* Add to bag button */}
-      <button className="w-full bg-gray-900 text-white rounded-md py-2 hover:bg-gray-800">
+      <button onClick={()=> {addToCart({productId, name, badge, ratings, price, colors, sizes, image})}} className="w-full bg-gray-900 text-white rounded-md py-2 hover:bg-gray-800">
         Add to Bag
       </button>
     </div>

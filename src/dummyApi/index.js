@@ -29,5 +29,24 @@ export class Categories{
             },0)
         })
     }
+    static getProductById(productId){
+        return new Promise((resolve, reject)=> {
+            var allProducts = [];
+            products.catelog.forEach(cat=>{
+                allProducts.push(...cat.products);
+            })
+            const prod = allProducts.find(prod => {
+                if(prod.productId == productId){
+                    return prod;
+                }
+            });
+            if(prod){
+                resolve(prod);
+            }
+            else{
+                reject("oops! no product found");
+            }
+        })
+    }
 }
 
