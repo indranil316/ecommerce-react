@@ -44,7 +44,7 @@ function Search(props) {
         <h2 className="sr-only">Products</h2>
         <div className='flex w-full'>
             <Filter/>
-            <div className="ml-5 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+            <div className="ml-5 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
               {renderListItems()}
             </div>
         </div>

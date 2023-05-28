@@ -8,7 +8,7 @@ function Filter() {
   };
 
   return (
-    <div>
+    <div class="hidden md:block">
       <div className="flex justify-between items-center">
         <span className="text-lg font-medium text-gray-700">Filter by</span>
         <button
