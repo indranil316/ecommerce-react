@@ -28,7 +28,7 @@ const HomeContent3 = () => {
     },
     {
       icon: <Icon icon={checkCircle} size={24} />,
-      title: 'Satisfaction Guaranteed',
+      title: '24/7 Support',
       description: 'We strive to provide the best products and ensure your satisfaction.',
       link: '/guarantee',
     },

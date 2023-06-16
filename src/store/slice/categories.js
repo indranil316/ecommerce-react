@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import {queries} from '../../constants';
-import {Categories} from '../../dummyApi'
+import {Categories} from '../../dummyApi';
+import commerce from '../../commerceApi';
 
 
 export const fetchCategories = createAsyncThunk(queries.fetchCategories, async ()=>{
-    const res = await Categories.getCategories();
-    return res;
+    const res = await commerce.categories.list();
+    return res.data;
 })
 
 const categories = createSlice({

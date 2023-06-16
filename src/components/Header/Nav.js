@@ -7,21 +7,21 @@ export default function Nav(props) {
   const [selectedCategory, setSelectedCategory] = useState(null); // State to track the selected category
 
   const createNavItem = (category) => {
-    const isCategorySelected = selectedCategory === category.categoryId;
+    const isCategorySelected = selectedCategory === category.id;
 
     const handleCategoryClick = () => {
-      setSelectedCategory(isCategorySelected ? null : category.categoryId);
+      setSelectedCategory(isCategorySelected ? null : category.id);
     };
 
     return (
-      <Popover key={category.categoryId} className="relative">
+      <Popover key={category.id} className="relative">
         <Popover.Button
           className={`flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 ${
             isCategorySelected ? 'text-indigo-600' : ''
           }`}
           onClick={handleCategoryClick} // Toggle selected category on click
         >
-          {category.categoryName}
+          {category.name}
           <ChevronDownIcon
             className={`h-5 w-5 flex-none ${isCategorySelected ? 'text-indigo-600' : 'text-gray-400'}`}
             aria-hidden="true"
@@ -49,24 +49,37 @@ export default function Nav(props) {
           >
             <div className="flex max-w-screen-xl mx-auto">
               <div className="flex-1 p-4">
-                {category.subCategories.map((item) => (
                   <div
-                    key={item.subCategoryId}
+                    key={category.id}
                     className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
                   >
                     <div className="flex-auto">
                       <Link
-                        to={`shop${item.subCategoryNavLink}`}
-                        onClick={() => {
-                          props.setSearchRule(`categoryId=${item.subCategoryId}`);
-                          setSelectedCategory(null)
-                        }}
+                        to={`shop/${category.slug}`}
                         className="block font-semibold text-gray-900"
+                        onClick={closeNav}
                       >
-                        {item.subCategoryName}
+                        All {category.name}
                         <span className="absolute inset-0" />
                       </Link>
-                      <p className="mt-1 text-gray-600">{item.subCategoryDescription}</p>
+                      <p className="mt-1 text-gray-600">{category.description ?? ""}</p>
+                    </div>
+                  </div>
+                {category.children.map((item) => (
+                  <div
+                    key={item.id}
+                    className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+                  >
+                    <div className="flex-auto">
+                      <Link
+                        to={`shop/${item.slug}`}
+                        className="block font-semibold text-gray-900"
+                        onClick={closeNav}
+                      >
+                        {item.name}
+                        <span className="absolute inset-0" />
+                      </Link>
+                      <p className="mt-1 text-gray-600">{item.description ?? ""}</p>
                     </div>
                   </div>
                 ))}
@@ -84,16 +97,17 @@ export default function Nav(props) {
     );
   };
 
+  const closeNav = () => {
+    setSelectedCategory(null);
+  };
+
   useEffect(() => {
     // Close the modal on scroll
-    const handleScroll = () => {
-      setSelectedCategory(null);
-    };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', closeNav);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', closeNav);
     };
   }, []);
 

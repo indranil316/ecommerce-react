@@ -1,9 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { queries } from "../../constants";
-import { Categories } from '../../dummyApi';
+import commerce from "../../commerceApi";
 
-export const fetchProductsByCategory = createAsyncThunk(queries.fetchProductsByCategory, async (searchedCategoryId) => {
-    const res = await Categories.getProductsByCategory(searchedCategoryId);
+export const fetchProductsByCategory = createAsyncThunk(queries.fetchProductsByCategory, async (searchedCategorySlug) => {
+    const res = await commerce.products.list({
+        category_slug:[searchedCategorySlug]
+    });
+    if(!res.data){
+        res.data=[];
+    }
     return res;
 })
 

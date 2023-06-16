@@ -1,18 +1,19 @@
-import React, {useState} from 'react';
-import { useQueryClient, useQuery } from 'react-query';
+import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
-
+import { useDispatch, useSelector } from 'react-redux';
+import {fetchProductById} from '../store/slice/product';
 import { ProductImageSlider, ProductDetails, Recommendation, RecentlyViewed, MiniCart} from '../components/Product';
 import { Breadcrumbs } from '../components/Search';
 import { AppLoading } from '../components/Loaders';
 
 import {queries, cartId} from '../constants';
-import {Categories} from '../dummyApi'
-
-
 
 function Product(props) {
+  const dispatch = useDispatch();
+  const state = useSelector(state=> state.product);
+  const [productId, setProductId] = useState(null);
   const [isMiniCartOpen, setMiniCartOpen] = useState(false);
+  const params = useParams();
 
   const openMiniCart = () => {
     setMiniCartOpen(true);
@@ -22,20 +23,27 @@ function Product(props) {
     setMiniCartOpen(false);
   }
 
-  const params = useParams();
-  const queryClient = useQueryClient();
 
-  const {isLoading, data, isError} = useQuery(queries.fetchProductById, async ()=>{
-    return await Categories.getProductById(params.productId)
-  });
+  useEffect(function(){
+    if(params.productId){
+      setProductId(params.productId);
+    }
+  },[params])
+
+  useEffect(function(){
+    dispatch(fetchProductById(productId))
+  },[productId])
   
+  const {isLoading, data, error} = state;
+
   if(isLoading){
     return <AppLoading/>
   }
-  if(isError){
+  if(!data){
     return <h1>Error 404! Cannot find product</h1>
   }
-  const {productId, productName, productPrice, productImageLink} = data;
+
+  const {id, name, price, image, assets, variant_groups, related_products} = data;
 
   const addToCart = (product) => {
     let cart = JSON.parse(localStorage.getItem(cartId)) ?? [];
@@ -43,26 +51,22 @@ function Product(props) {
     localStorage.setItem(cartId,JSON.stringify(cart));
     openMiniCart();
   } 
+  console.log(state)
   return (
     <div className='container mx-auto'>
         <Breadcrumbs links={['product','category']} className="mb-5"/>
         <div className='flex row'>
             <ProductImageSlider
-                images={[
-                    'https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-                    'https://images.pexels.com/photos/3270223/pexels-photo-3270223.jpeg?auto=compress&cs=tinysrgb&w=1600',
-                    'https://images.pexels.com/photos/247769/pexels-photo-247769.jpeg?auto=compress&cs=tinysrgb&w=1600',
-                ]}
+                images={assets}
             />
             <ProductDetails
-              productId={productId}
-              name={productName}
+              productId={id}
+              name={name}
               badge={{ color: 'bg-yellow-500', text: 'New' }}
               ratings={4}
-              price={productPrice}
-              colors={['#000', '#FFF', '#D8D8D8', '#2A2A2A']}
-              sizes={['6', '7', '8', '9', '10']}
-              image={productImageLink}
+              price={price.formatted}
+              image={image.url}
+              variant_groups={variant_groups}
               addToCart = {addToCart}
               openMiniCart={openMiniCart}
             />
@@ -74,10 +78,9 @@ function Product(props) {
               />
             )}
         </div>
-        <Recommendation/>
-        <RecentlyViewed/>
+        <Recommendation products={related_products}/>
+        <RecentlyViewed products={related_products}/>
     </div>
-
   )
 }
 

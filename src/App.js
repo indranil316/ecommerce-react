@@ -17,15 +17,13 @@ import {AppLoading} from './components/Loaders';
 
 
 function App() {
-  const [searchRule, setSearchRule] = useState('categoryId=11111')
   const dispatch = useDispatch();
   const state = useSelector((state)=>state);
 
   useEffect(function(){
     dispatch(fetchCategories());
   },[])
-
-  const { isLoading, error, data} = state.categories;
+   const { isLoading, error, data} = state.categories;
 
   if(isLoading) return <AppLoading/>;
   if(error) return <div>error</div>;
@@ -33,12 +31,12 @@ function App() {
   return (
     <BrowserRouter>
       <div id="app">
-        <Header categories={data.categories} setSearchRule={setSearchRule}/>
+        <Header categories={data}/>
         <main className='w-full'>
           <Routes>
             <Route exact path='/' element={<Home/>} />
-            <Route path='/shop/:category/:subcategory?' element={<Search searchRule={searchRule}/>}/>
-            <Route path='/shop' element={<Search searchRule={searchRule}/>}/>
+            <Route path='/shop/:category/:subcategory?' element={<Search/>}/>
+            <Route path='/shop' element={<Search/>}/>
             <Route path='/product/:productId' element={<Product/>}/>
             <Route path='/cart' element={<Cart/>}/>
           </Routes>

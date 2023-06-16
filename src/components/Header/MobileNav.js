@@ -2,6 +2,7 @@ import {  XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Dialog, Disclosure} from '@headlessui/react';
 import { Link } from 'react-router-dom';
+import logo from '../../assets/images/logo.png';
 
 function MobileNav(props) {
   const {mobileMenuOpen, setMobileMenuOpen, classNames, categories} = props;
@@ -11,11 +12,11 @@ function MobileNav(props) {
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <Link to="/" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
+              <span className="sr-only">GemsKart</span>
               <img
                 className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
+                src={logo}
+                alt="GemsKart"
               />
             </Link>
             <button
@@ -33,25 +34,25 @@ function MobileNav(props) {
                 {
                   categories.map(category=>{
                     return(
-                      <Disclosure as="div" className="-mx-3" key={category.categoryId}>
+                      <Disclosure as="div" className="-mx-3" key={category.id}>
                       {({ open }) => (
                         <>
                           <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50">
-                            {category.categoryName}
+                            {category.name}
                             <ChevronDownIcon
                               className={classNames(open ? 'rotate-180' : '', 'h-5 w-5 flex-none')}
                               aria-hidden="true"
                             />
                           </Disclosure.Button>
                           <Disclosure.Panel className="mt-2 space-y-2">
-                            {category.subCategories.map((item) => (
+                            {category.children.map((item) => (
                               <Disclosure.Button
-                                key={item.subCategoryId}
+                                key={item.id}
                                 as={Link}
-                                to={'shop'+item.subCategoryNavLink}
+                                to={'shop'+item.slug}
                                 className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                               >
-                                {item.subCategoryName}
+                                {item.name}
                               </Disclosure.Button>
                             ))}
                           </Disclosure.Panel>

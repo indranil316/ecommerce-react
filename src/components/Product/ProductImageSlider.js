@@ -35,9 +35,9 @@ const ProductImageSlider = ({ images }) => {
         />
         {images.map((image, index) => (
           <img
-            key={index}
-            src={image}
-            alt={`Product Image ${index}`}
+            key={image.id}
+            src={image.url}
+            alt={image.name}
             className={`w-full h-1/5 object-cover transition duration-300 my-2 ${
               selectedImageIndex === index ? 'opacity-100' : 'opacity-50 hover:opacity-100'
             }`}
@@ -57,8 +57,8 @@ const ProductImageSlider = ({ images }) => {
           onClick={handleHeartClick}
         />
         <img
-          src={images[selectedImageIndex]}
-          alt={`Selected Product Image`}
+          src={images[selectedImageIndex].url}
+          alt={images[selectedImageIndex].name}
           className="w-full h-full object-contain"
         />
       </div>

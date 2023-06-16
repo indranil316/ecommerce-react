@@ -2,20 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { useParams} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {fetchProductsByCategory} from '../store/slice/products';
+import { Skeleton } from '../components/Common'
 
 import { Breadcrumbs, SearchProductCard, CategoryBanner, Filter } from '../components/Search';
 
 function Search(props) {
   const dispatch = useDispatch();
   const state = useSelector((state)=>state.products);
-  const params = new URLSearchParams(props.searchRule);
-  const [searchedCategoryId, setSearchedCategoryId] = useState('');
+  // const params = new URLSearchParams();
+  const [searchedCategorySlug, setSearchedCategorySlug] = useState('');
   const { category, subcategory } = useParams();
-
+  const params = useParams();
 
   useEffect(function(){
-    if(params.get('categoryId')){
-      setSearchedCategoryId(params.get('categoryId'))
+    if(params.category){
+      setSearchedCategorySlug(params.category)
     }
     else if(params.get('searchKey')){
       console.log('hehe')
@@ -23,15 +24,21 @@ function Search(props) {
   },[params])
 
   useEffect(function(){
-    dispatch(fetchProductsByCategory(searchedCategoryId));
-  },[searchedCategoryId])
+    dispatch(fetchProductsByCategory(searchedCategorySlug));
+  },[searchedCategorySlug])
 
   const renderListItems = () => {
-    console.log(state);
     if(state.isLoading === true || state.data===null){
-      return null;
+      return [1,2,3,4,5,6].map(key=>{
+        return(
+          <Skeleton.Card key={key}/>
+        )
+      })
     }
-    return state.data.map(item=>{
+    if(state.data.data.length===0){
+      return <h1>Opps...No products</h1>
+    }
+    return state.data.data.map(item=>{
       return <SearchProductCard product={item} key={item.productId}/>
     })
   }
@@ -44,7 +51,7 @@ function Search(props) {
         <h2 className="sr-only">Products</h2>
         <div className='flex w-full'>
             <Filter/>
-            <div className="ml-5 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+            <div className="ml-5 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 xl:gap-x-8">
               {renderListItems()}
             </div>
         </div>
