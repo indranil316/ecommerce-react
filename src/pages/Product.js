@@ -5,6 +5,7 @@ import {fetchProductById} from '../store/slice/product';
 import { ProductImageSlider, ProductDetails, Recommendation, RecentlyViewed, MiniCart} from '../components/Product';
 import { Breadcrumbs } from '../components/Search';
 import { AppLoading } from '../components/Loaders';
+import { Skeleton } from '../components/Common';
 
 import {queries, cartId} from '../constants';
 
@@ -40,7 +41,7 @@ function Product(props) {
     return <AppLoading/>
   }
   if(!data){
-    return <h1>Error 404! Cannot find product</h1>
+    return <Skeleton.PDP/>
   }
 
   const {id, name, price, image, assets, variant_groups, related_products} = data;
