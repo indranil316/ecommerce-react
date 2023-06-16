@@ -6,8 +6,8 @@ import { ProductImageSlider, ProductDetails, Recommendation, RecentlyViewed, Min
 import { Breadcrumbs } from '../components/Search';
 import { AppLoading } from '../components/Loaders';
 import { Skeleton } from '../components/Common';
-
-import {queries, cartId} from '../constants';
+import {updateRecentlyViewed} from '../libs'
+import {cartId} from '../constants';
 
 function Product(props) {
   const dispatch = useDispatch();
@@ -33,6 +33,7 @@ function Product(props) {
 
   useEffect(function(){
     dispatch(fetchProductById(productId))
+    updateRecentlyViewed(productId)
   },[productId])
   
   const {isLoading, data, error} = state;
@@ -52,7 +53,7 @@ function Product(props) {
     localStorage.setItem(cartId,JSON.stringify(cart));
     openMiniCart();
   } 
-  console.log(state)
+
   return (
     <div className='container mx-auto'>
         <Breadcrumbs links={['product','category']} className="mb-5"/>
@@ -80,7 +81,7 @@ function Product(props) {
             )}
         </div>
         <Recommendation products={related_products}/>
-        <RecentlyViewed products={related_products}/>
+        <RecentlyViewed productId={productId}/>
     </div>
   )
 }
