@@ -94,7 +94,7 @@ const CartPage = () => {
             </div>
             <div className='flex justify-between items-center mb-2 mt-5'>
               <p>Sub Total : </p>
-              <p>$ {subTotal}</p>
+              <p> {subTotal}</p>
             </div>
             <div className='flex justify-between items-center mb-2 mt-5 border-b border-dotted border-black pb-5'>
               <p>Ground Shipping : </p>
@@ -102,7 +102,7 @@ const CartPage = () => {
             </div>
             <div className='flex justify-between items-center mb-2 mt-5'>
               <p>Total : </p>
-              <p>$ {subTotal}</p>
+              <p>{subTotal}</p>
             </div>
           </div>
           <button className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-900 w-full">

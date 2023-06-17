@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useParams} from 'react-router-dom';
+import { useParams, useSearchParams} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {fetchProductsByCategory} from '../store/slice/products';
+import {fetchProductsByCategory, fetchProductsByQuery} from '../store/slice/products';
 import { Skeleton } from '../components/Common'
 
 import { Breadcrumbs, SearchProductCard, CategoryBanner, Filter } from '../components/Search';
@@ -9,23 +9,28 @@ import { Breadcrumbs, SearchProductCard, CategoryBanner, Filter } from '../compo
 function Search(props) {
   const dispatch = useDispatch();
   const state = useSelector((state)=>state.products);
-  // const params = new URLSearchParams();
   const [searchedCategorySlug, setSearchedCategorySlug] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   const { category, subcategory } = useParams();
   const params = useParams();
-
+  const [searchParams] = useSearchParams();
+ 
   useEffect(function(){
-    if(params.category){
+    if(Object.keys(params).length && params.category){
       setSearchedCategorySlug(params.category)
     }
-    else if(params.get('searchKey')){
-      console.log('hehe')
+    else if(searchParams.get("searchKey")){
+      setSearchQuery(searchParams.get("searchKey"));
     }
-  },[params])
+  },[params,searchParams])
 
   useEffect(function(){
     dispatch(fetchProductsByCategory(searchedCategorySlug));
   },[searchedCategorySlug])
+
+  useEffect(function(){
+    dispatch(fetchProductsByQuery(searchQuery));
+  },[searchQuery])
 
   const renderListItems = () => {
     if(state.isLoading === true || state.data===null){

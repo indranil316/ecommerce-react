@@ -12,6 +12,16 @@ export const fetchProductsByCategory = createAsyncThunk(queries.fetchProductsByC
     return res;
 })
 
+export const fetchProductsByQuery = createAsyncThunk(queries.fetchProductsByQuery, async (searchQuery) => {
+    const res = await commerce.products.list({
+        query:searchQuery
+    });
+    if(!res.data){
+        res.data=[];
+    }
+    return res;
+})
+
 const productSlice = createSlice({
     name:"products",
     initialState:{
@@ -33,7 +43,21 @@ const productSlice = createSlice({
                 message:"Could not fetch products",
                 err:action.payload
             };
-        })
+        });
+        builders.addCase(fetchProductsByQuery.fulfilled, (state, action)=>{
+            state.isLoading=false;
+            state.data=action.payload;
+        });
+        builders.addCase(fetchProductsByQuery.pending, (state, action) => {
+            state.isLoading=true;
+        });
+        builders.addCase(fetchProductsByQuery.rejected, (state, action)=>{
+            state.isLoading=false;
+            state.error={
+                message:"Could not fetch products",
+                err:action.payload
+            };
+        });
     }
 })
 

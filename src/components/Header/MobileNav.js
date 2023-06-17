@@ -3,9 +3,31 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Dialog, Disclosure} from '@headlessui/react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
+import { useEffect, useRef } from 'react';
 
 function MobileNav(props) {
-  const {mobileMenuOpen, setMobileMenuOpen, classNames, categories} = props;
+  const {
+    mobileMenuOpen, 
+    setMobileMenuOpen, 
+    classNames, 
+    categories, 
+    handleSearchSubmit, 
+    search, 
+    setSearch,
+    mobileSearchFocus,
+    setMobileSearchFocus
+  } = props;
+
+  const searchFormRef = useRef(null);
+
+  useEffect(function(){
+    if(mobileSearchFocus){
+      searchFormRef.current.click();
+      searchFormRef.current.focus();
+      setMobileSearchFocus(false);
+    }
+  },[mobileSearchFocus])
+
   return (
     <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-10" />
@@ -29,6 +51,26 @@ function MobileNav(props) {
             </button>
           </div>
           <div className="mt-6 flow-root">
+            <div id='search' className='mb-10'>
+              <form autoFocus={true} onSubmit={handleSearchSubmit}>   
+                  <label for="default-search" className="text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                  <div className="relative">
+                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                          <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokelinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                      </div>
+                      <input 
+                        ref={searchFormRef}
+                        type="search" 
+                        value={search} 
+                        onChange={e=>{setSearch(e.target.value)}} 
+                        id="default-search" 
+                        className="block w-full p-[5px] pl-10 text-sm text-gray-900 border-b focus:outline-0 focus:border-black-800" 
+                        placeholder="Search Products..." 
+                        required
+                      />
+                  </div>
+              </form>
+            </div>  
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                 {
