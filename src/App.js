@@ -3,12 +3,15 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {fetchCategories} from './store/slice/categories';
 
+import '@fortawesome/fontawesome-free/css/all.css';
 import './scss/index.scss';
+
 
 import Home from './pages/Home';
 import Search from './pages/Search';
 import Product from './pages/Product';
 import Cart from './pages/Cart';
+import Account from './pages/Account';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -39,6 +42,7 @@ function App() {
             <Route path='/shop' element={<Search/>}/>
             <Route path='/product/:productId' element={<Product/>}/>
             <Route path='/cart' element={<Cart/>}/>
+            <Route path='/account' element={<Account/>}/>
           </Routes>
         </main>
         <Footer/>

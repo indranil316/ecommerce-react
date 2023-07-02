@@ -76,7 +76,7 @@ function HeaderTop(props) {
           <Link to="/wishlist" className='mx-[8px] hidden md:block'>
             <FontAwesomeIcon icon={faHeart} size="lg"/>
           </Link>
-          <Link to="/login" className='mx-[8px]'>
+          <Link to="/account" className='mx-[8px]'>
             <FontAwesomeIcon icon={faUser} size="lg hidden md:block" />
           </Link>
           <Link to="/cart" id='my-cart' className='mx-[8px]'>
